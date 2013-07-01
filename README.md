@@ -1,7 +1,7 @@
 GitRefresher
 ============
 
-Show the GIT status of all projects inside your workspace
+Shows the GIT status of all projects inside your workspace
 
 Pass your workspace directory as parameter:
 

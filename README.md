@@ -1,4 +1,8 @@
 GitRefresher
 ============
 
-Pass your workspace dir as parameter to check the `git status` for all projects
+Show the GIT status of all projects inside your workspace
+
+Pass your workspace directory as parameter:
+
+run `./gitrefresher.sh path_to_workspace`

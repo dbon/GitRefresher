@@ -40,11 +40,10 @@ for current_dir in "$workspace/"*; do
                 then
                     echo "$project"
                     # Update Refs
-                    git remote update
+                    git remote update > /dev/null
                     # Show Status
                     git status --short
                     # Show differences between local and remote
-                    git status -uno
                     continue
                 fi
 

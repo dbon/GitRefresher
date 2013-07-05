@@ -3,19 +3,19 @@ set -e
 
 workspace=$1
 
-if [ -z "$workspace" ] 
+if [ -z "$workspace" ]
 then
     workspace=~/workspace
 fi
 
 for current_dir in "$workspace/"*; do
-    
+
     if [[ -d "$current_dir" ]]
-    then            
-        
+    then
+
         cd "$current_dir"
-        
-        # count all .git folders inside $current_dir 
+
+        # count all .git folders inside $current_dir
         subdircount=`find . -name ".git" -maxdepth 1 -type d | wc -l`
 
         # check if .git folder exists
@@ -24,28 +24,33 @@ for current_dir in "$workspace/"*; do
             echo "$current_dir"
             git status --short
             continue
-        fi            
-        
+        fi
+
         for project in "$current_dir/"*; do
-  
+
             if [[ -d "$project" ]]
             then
                 cd "$project"
 
-                # count all .git folders inside $current_dir 
+                # count all .git folders inside $current_dir
                 subdircount=`find . -name ".git" -maxdepth 1 -type d | wc -l`
-      
+
                 # check if .git folder exists
                 if [ $subdircount -eq 1 ]
                 then
                     echo "$project"
-                    git status --short                  
+                    # Update Refs
+                    git remote update
+                    # Show Status
+                    git status --short
+                    # Show differences between local and remote
+                    git status -uno
                     continue
                 fi
 
             else
                 echo "[ERROR]: $current_dir is not a directory"
-            fi 
+            fi
         done
     else
         echo "[ERROR]: $current_dir is not a directory"

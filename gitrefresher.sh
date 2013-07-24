@@ -16,7 +16,7 @@ for current_dir in "$workspace/"*; do
         cd "$current_dir"
 
         # count all .git folders inside $current_dir
-        subdircount=`find . -name ".git" -maxdepth 1 -type d | wc -l`
+        subdircount=`find . -maxdepth 1 -type d -name ".git" | wc -l`
 
         # check if .git folder exists
         if [ $subdircount -eq 1 ]
@@ -33,7 +33,7 @@ for current_dir in "$workspace/"*; do
                 cd "$project"
 
                 # count all .git folders inside $current_dir
-                subdircount=`find . -name ".git" -maxdepth 1 -type d | wc -l`
+                subdircount=`find . -maxdepth 1 -type d -name ".git" | wc -l`
 
                 # check if .git folder exists
                 if [ $subdircount -eq 1 ]
